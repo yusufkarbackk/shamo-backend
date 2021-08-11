@@ -9,21 +9,20 @@ use App\Models\ProductCategory;
 
 
 
-class ProductCtegoryController extends Controller
+class ProductCategoryController extends Controller
 {
     public function all(Request $request){
-        $id = $request->input('id');
-        $limit = $request->input('limit');
-        $name = $request->input('id');
+        $id           = $request->input('id');
+        $limit        = $request->input('limit');
+        $name         = $request->input('id');
         $show_product = $request->input('show_product');
-    }
 
-    if ($id) {
+        if ($id) {
             $category = ProductCategory::with(['category'])->find($id);
             if ($category) {
-                return ResponseFormatter::success($product, 'Data category berhasil di ambil');
+                return ResponseFormatter:: success($product, 'Data category berhasil di ambil');
             } else {
-                return ResponseFormatter::error(null, 'Data category tidak tersedia', 404);
+                return ResponseFormatter:: error(null, 'Data category tidak tersedia', 404);
             }
             
         }
@@ -38,6 +37,9 @@ class ProductCtegoryController extends Controller
     }
 
 
-    return ResponseFormatter::success($product->paginate($limit), 'Data category berhasil di ambil');
+    return ResponseFormatter:: success($category->paginate($limit), 'Data category berhasil di ambil');
+    }
+
+    
 
 }

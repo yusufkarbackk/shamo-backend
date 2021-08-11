@@ -10,22 +10,22 @@ use App\Helpers\ResponseFormatter;
 class ProductController extends Controller
 {
     public function all(Request $request){ 
-        $id = $request->input('id');
-        $limit = $request->input('limit');
-        $name = $request->input('id');
+        $id          = $request->input('id');
+        $limit       = $request->input('limit');
+        $name        = $request->input('id');
         $description = $request->input('description');
-        $tags = $request->input('tags');
-        $categories = $request->input('categories');
-        $price_from = $request->input('price_from');
-        $price_to = $request->input('price_to');
+        $tags        = $request->input('tags');
+        $categories  = $request->input('categories');
+        $price_from  = $request->input('price_from');
+        $price_to    = $request->input('price_to');
 
         
         if ($id) {
             $product = Product::with(['category', 'galleries'])->find($id);
             if ($product) {
-                return ResponseFormatter::success($product, 'Data produk berhasil di ambil');
+                return ResponseFormatter:: success($product, 'Data produk berhasil di ambil');
             } else {
-                return ResponseFormatter::error(null, 'Data produk tidak tersedia', 404);
+                return ResponseFormatter:: error(null, 'Data produk tidak tersedia', 404);
             }
             
         }
@@ -52,7 +52,7 @@ class ProductController extends Controller
             $product->where('categories', $categories);
         }
 
-        return ResponseFormatter::success($product->paginate($limit), 'Data produk berhasil di ambil');
+        return ResponseFormatter:: success($product->paginate($limit), 'Data produk berhasil di ambil');
 
 
 
